@@ -1,0 +1,24 @@
+# maven #
+target
+# idea #
+.idea
+*.iml
+# eclipse #
+.settings
+.project
+.classpath
+.log
+# windows #
+Thumbs.db
+# Mac #
+.DS_Store
+# Package Files #
+*.war
+*.ear
+*.class
+# Package Files #
+*.jar
+#ot#
+*.bak
+*.tmp
+*.log

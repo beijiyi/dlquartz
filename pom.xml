@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>io.github.beijiyi</groupId>
+    <artifactId>dlquartz</artifactId>
+    <name>dlquartz</name>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+
+    <description>quartz工具类，封装改装了便捷的方法。</description>
+    <url>https://github.com/beijiyi/dlquartz</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding><!-- 文件拷贝时的编码 -->
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.compiler.encoding>UTF-8</maven.compiler.encoding><!-- 编译时的编码 -->
+    </properties>
+
+    <!-- 项目发布管理：在依赖包所在项目的 pom 文件添加如下配置 -->
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz</artifactId>
+            <version>2.2.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz-jobs</artifactId>
+            <version>2.2.2</version>
+        </dependency>
+    </dependencies>
+
+
+    <build>
+        <plugins>
+            <!-- sonatype插件-->
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.7</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>ossrh</serverId>
+                    <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                </configuration>
+            </plugin>
+
+            <!-- 生成java source.jar -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.9.1</version>
+                <configuration>
+                    <show>private</show>
+                    <nohelp>true</nohelp>
+                    <charset>UTF-8</charset>
+                    <encoding>UTF-8</encoding>
+                    <docencoding>UTF-8</docencoding>
+                    <additionalparam>-Xdoclint:none</additionalparam>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.5</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.8.2</version>
+            </plugin>
+
+            <!-- 指定jdk -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+
+    <!--开源版本信息-->
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <!-- 仓库信息 -->
+    <scm>
+        <connection>scm:git:https://github.com/beijiyi/dlquartz</connection>
+        <developerConnection>scm:git:https://github.com/beijiyi/dlquartz</developerConnection>
+        <url>https://github.com/beijiyi/dlquartz</url>
+    </scm>
+
+    <!-- 开发人员信息 -->
+    <developers>
+        <developer>
+            <id>luorongda</id>
+            <name>luorongda</name>
+            <email>372049118@qq.com</email>
+            <url>https://github.com/beijiyi/dlquartz</url>
+            <organization>Your Organization</organization>
+            <organizationUrl>https://github.com/beijiyi/dlquartz</organizationUrl>
+            <roles>
+                <role>developer</role>
+            </roles>
+            <timezone>Asia/Shanghai</timezone>
+        </developer>
+    </developers>
+
+
+</project>
